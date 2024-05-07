@@ -90,6 +90,11 @@ nav.navbar {
   z-index: 9999;
   transition:  0.32s ease-in-out;
 }
+/* img[alt="Logo"] {
+  height: 10vh;
+  width: auto;
+} */
+
 nav.navbar.scrolled {
   padding: 0px 0;
   background-color: #121212;
@@ -230,13 +235,13 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 	border-color: transparent;
 }
 
-/* .headingLogo{
+.headingLogo{
     font-size: 3vw;
     font-weight: 600;
     text-decoration: none;
     color: #fff;
     
-} */
+}
 /************ Banner Css ************/
 .banner {
   margin-top: 0;
@@ -265,7 +270,8 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   display: block;
 }
 .banner p {
-  color: #B8B8B8;
+  /* color: #B8B8B8; */
+  color:#eae8e8;
   font-size: 18px;
   letter-spacing: 0.8px;
   line-height: 1.5em;
