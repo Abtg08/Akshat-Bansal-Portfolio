@@ -22,6 +22,7 @@ import ml from "../assets/img/skillsItem/ml2.svg";
 import figma from "../assets/img/skillsItem/figma.svg";
 import mysql from "../assets/img/skillsItem/mysql.svg";
 import excel from "../assets/img/skillsItem/excel.svg";
+import power from "../assets/img/skillsItem/powerbi.svg";
 
 export const Skills = () => {
   const responsive = {
@@ -52,9 +53,8 @@ export const Skills = () => {
             <div className="skill-bx wow zoomIn">
               <h2>Skills</h2>
               <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry.<br></br> Lorem Ipsum has been the industry's standard
-                dummy text.
+                Dive into my toolkit of talents, where coding meets creativity
+                <br></br> and problem-solving gets playful!
               </p>
               <Carousel
                 responsive={responsive}
@@ -62,8 +62,8 @@ export const Skills = () => {
                 className="owl-carousel owl-theme skill-slider"
               >
                 <div className="item">
-                  <img src={ml} alt="Image" />
-                  <h5>Machine Learning</h5>
+                  <img src={power} alt="Image" />
+                  <h5>Power BI</h5>
                 </div>
                 <div className="item">
                   <img src={next} alt="Image" />
@@ -124,6 +124,10 @@ export const Skills = () => {
                 <div className="item">
                   <img src={excel} alt="Image" />
                   <h5>Excel</h5>
+                </div>
+                <div className="item">
+                  <img src={ml} alt="Image" />
+                  <h5>Machine Learning</h5>
                 </div>
               </Carousel>
             </div>
