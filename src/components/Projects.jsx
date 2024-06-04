@@ -116,10 +116,16 @@
 import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import { ProjectCard } from "./ProjectCard";
 import projImg1 from "../assets/img/project-img1.png";
-import projHangman from "../assets/img/project-hangam.jpg";
+import projHangman from "../assets/img/feProjects/project-hangam.jpg";
 import projImg2 from "../assets/img/project-img2.png";
 import projImg3 from "../assets/img/project-img3.png";
-import projGrilli from "../assets/img/proj-grilli.png";
+import projGrilli from "../assets/img/feProjects/proj-grilli.png";
+import projPortfolio from "../assets/img/feProjects/project-portfolio.png";
+import projFoodie from "../assets/img/feProjects/project-foodie.png";
+import projRockvMine from "../assets/img/mlProjects/project-rockvmine.png";
+import projDiabetes from "../assets/img/mlProjects/project-diabetes.png";
+import projFoodRecom from "../assets/img/mlProjects/project-foodRecomm.png";
+
 import colorSharp2 from "../assets/img/color-sharp2.png";
 import "animate.css";
 import TrackVisibility from "react-on-screen";
@@ -130,19 +136,19 @@ export const Projects = () => {
       title: "Business Startup",
       description: "Design & Development",
       imgUrl: projImg1,
-      url: "https://abtg08.github.io/Marvel_Hangman_Game/",
+      url: "https://abtg08.github.io",
     },
     {
       title: "Business Startup",
       description: "Design & Development",
-      imgUrl: projImg2,
-      url: "https://abtg08.github.io/Marvel_Hangman_Game/",
+      imgUrl: projHangman,
+      url: "https://abtg08.github.io",
     },
     {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: projImg3,
-      url: "https://abtg08.github.io/Marvel_Hangman_Game/",
+      title: "Portfolio Project",
+      description: "React, Tailwind CSS, ReactBootstrap",
+      imgUrl: projPortfolio,
+      url: "",
     },
     {
       title: "Hangman Game",
@@ -157,10 +163,40 @@ export const Projects = () => {
       url: "https://abtg08.github.io/Cafe-Grilli/#",
     },
     {
+      title: "Foodie Restaurant",
+      description: "HTML, Tailwind CSS, JS",
+      imgUrl: projFoodie,
+      url: "https://abtg08.github.io/Restaurant-Foodie/",
+    },
+  ];
+
+  const projectsDA = [
+    {
       title: "Business Startup",
       description: "Design & Development",
-      imgUrl: projImg3,
+      imgUrl: projImg1,
       url: "https://abtg08.github.io/Marvel_Hangman_Game/",
+    },
+  ];
+
+  const projectsML = [
+    {
+      title: "Location Based Food Recommendation System",
+      description: "k-Means Clustering",
+      imgUrl: projFoodRecom,
+      url: "https://github.com/Abtg08/Location-Based-Food-Recommendation-System",
+    },
+    {
+      title: "Diabetes Prediction",
+      description: "Support Vector Machines(SVM)",
+      imgUrl: projDiabetes,
+      url: "https://github.com/Abtg08/Diabetes_Prediction_Using_SVM",
+    },
+    {
+      title: "Sonar Rock vs Mine Prediction",
+      description: "Logistic Regression",
+      imgUrl: projRockvMine,
+      url: "https://github.com/Abtg08/Mine_vs_Rock_Predictor",
     },
   ];
 
@@ -210,14 +246,14 @@ export const Projects = () => {
                       </Tab.Pane>
                       <Tab.Pane eventKey="second">
                         <Row>
-                          {projects.map((project, index) => {
+                          {projectsDA.map((project, index) => {
                             return <ProjectCard key={index} {...project} />;
                           })}
                         </Row>
                       </Tab.Pane>
                       <Tab.Pane eventKey="third">
                         <Row>
-                          {projects.map((project, index) => {
+                          {projectsML.map((project, index) => {
                             return <ProjectCard key={index} {...project} />;
                           })}
                         </Row>
