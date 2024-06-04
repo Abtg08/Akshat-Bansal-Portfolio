@@ -119,6 +119,7 @@ import projImg1 from "../assets/img/project-img1.png";
 import projHangman from "../assets/img/project-hangam.jpg";
 import projImg2 from "../assets/img/project-img2.png";
 import projImg3 from "../assets/img/project-img3.png";
+import projGrilli from "../assets/img/proj-grilli.png";
 import colorSharp2 from "../assets/img/color-sharp2.png";
 import "animate.css";
 import TrackVisibility from "react-on-screen";
@@ -150,10 +151,10 @@ export const Projects = () => {
       url: "https://abtg08.github.io/Marvel_Hangman_Game/",
     },
     {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: projImg2,
-      url: "https://abtg08.github.io/Marvel_Hangman_Game/",
+      title: "Cafe Grilli",
+      description: "HTML, CSS, JS",
+      imgUrl: projGrilli,
+      url: "https://abtg08.github.io/Cafe-Grilli/#",
     },
     {
       title: "Business Startup",
