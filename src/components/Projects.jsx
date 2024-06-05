@@ -122,6 +122,7 @@ import projImg3 from "../assets/img/project-img3.png";
 import projGrilli from "../assets/img/feProjects/proj-grilli.png";
 import projPortfolio from "../assets/img/feProjects/project-portfolio.png";
 import projFoodie from "../assets/img/feProjects/project-foodie.png";
+import projIPL from "../assets/img/daProjects/project-ipl1.png";
 import projRockvMine from "../assets/img/mlProjects/project-rockvmine.png";
 import projDiabetes from "../assets/img/mlProjects/project-diabetes.png";
 import projFoodRecom from "../assets/img/mlProjects/project-foodRecomm.png";
@@ -132,18 +133,18 @@ import TrackVisibility from "react-on-screen";
 
 export const Projects = () => {
   const projects = [
-    {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: projImg1,
-      url: "https://abtg08.github.io",
-    },
-    {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: projHangman,
-      url: "https://abtg08.github.io",
-    },
+    // {
+    //   title: "Business Startup",
+    //   description: "Design & Development",
+    //   imgUrl: projImg1,
+    //   url: "https://abtg08.github.io",
+    // },
+    // {
+    //   title: "Business Startup",
+    //   description: "Design & Development",
+    //   imgUrl: projHangman,
+    //   url: "https://abtg08.github.io",
+    // },
     {
       title: "Portfolio Project",
       description: "React, Tailwind CSS, ReactBootstrap",
@@ -172,10 +173,10 @@ export const Projects = () => {
 
   const projectsDA = [
     {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: projImg1,
-      url: "https://abtg08.github.io/Marvel_Hangman_Game/",
+      title: "Live IPL Dashboard",
+      description: "Power BI",
+      imgUrl: projIPL,
+      url: "https://github.com/Abtg08/Live-IPL-Dashboard",
     },
   ];
 
