@@ -122,6 +122,7 @@ import projImg3 from "../assets/img/project-img3.png";
 import projGrilli from "../assets/img/feProjects/proj-grilli.png";
 import projPortfolio from "../assets/img/feProjects/project-portfolio.png";
 import projFoodie from "../assets/img/feProjects/project-foodie.png";
+import projAdv from "../assets/img/daProjects/project-adv.png";
 import projIPL from "../assets/img/daProjects/project-ipl1.png";
 import projRockvMine from "../assets/img/mlProjects/project-rockvmine.png";
 import projDiabetes from "../assets/img/mlProjects/project-diabetes.png";
@@ -172,6 +173,12 @@ export const Projects = () => {
   ];
 
   const projectsDA = [
+    {
+      title: "AdventureWorks Dashboard",
+      description: "Power BI",
+      imgUrl: projAdv,
+      url: "https://github.com/Abtg08/Adventure-Works-Dashboard-Report",
+    },
     {
       title: "Live IPL Dashboard",
       description: "Power BI",
