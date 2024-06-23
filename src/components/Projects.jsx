@@ -117,11 +117,14 @@ import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import { ProjectCard } from "./ProjectCard";
 import projImg1 from "../assets/img/project-img1.png";
 import projHangman from "../assets/img/feProjects/project-hangam.jpg";
+import projJEC from "../assets/img/feProjects/project-clgweb.png";
 import projImg2 from "../assets/img/project-img2.png";
 import projImg3 from "../assets/img/project-img3.png";
 import projGrilli from "../assets/img/feProjects/proj-grilli.png";
 import projPortfolio from "../assets/img/feProjects/project-portfolio.png";
 import projFoodie from "../assets/img/feProjects/project-foodie.png";
+import projFin from "../assets/img/daProjects/project-finance.png";
+import projAmzn from "../assets/img/daProjects/project-amazon.png";
 import projAdv from "../assets/img/daProjects/project-adv.png";
 import projIPL from "../assets/img/daProjects/project-ipl1.png";
 import projRockvMine from "../assets/img/mlProjects/project-rockvmine.png";
@@ -153,6 +156,12 @@ export const Projects = () => {
       url: "",
     },
     {
+      title: "JEC Jabalpur Website",
+      description: "HTML, CSS, JS",
+      imgUrl: projJEC,
+      url: "https://abtg08.github.io/BigFish/",
+    },
+    {
       title: "Hangman Game",
       description: "HTML, CSS, JS",
       imgUrl: projHangman,
@@ -174,6 +183,12 @@ export const Projects = () => {
 
   const projectsDA = [
     {
+      title: "Amazon Dashboard",
+      description: "Power BI",
+      imgUrl: projAmzn,
+      url: "https://github.com/Abtg08/Amazon-Dashboard",
+    },
+    {
       title: "AdventureWorks Dashboard",
       description: "Power BI",
       imgUrl: projAdv,
@@ -184,6 +199,12 @@ export const Projects = () => {
       description: "Power BI",
       imgUrl: projIPL,
       url: "https://github.com/Abtg08/Live-IPL-Dashboard",
+    },
+    {
+      title: "Finance Dashboard",
+      description: "Power BI",
+      imgUrl: projFin,
+      url: "https://github.com/Abtg08/Finance-Dashboard",
     },
   ];
 
