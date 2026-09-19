@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Akshat Bansal</title>
+    <title>Akshat Bansal — Data & AI Engineer</title>
     <meta
       name="description"
-      content="Data Engineer building production systems on GCP — moving into backend and AI engineering."
+      content="Data Engineer with 2+ years shipping production systems on GCP — pipelines, warehouses, and AI services. Open to backend and AI engineering roles."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,13 +28,13 @@
         --accent-border: rgba(77, 255, 210, 0.25);
         --border: rgba(255, 255, 255, 0.07);
         --shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.3);
-
         --font-display: "DM Serif Display", Georgia, serif;
         --font-body: "Inter", system-ui, sans-serif;
         --font-mono: "JetBrains Mono", "Courier New", monospace;
+        --sidebar-w: 220px;
+        --content-w: 680px;
+        --gap: 48px;
       }
-
-      /* Light theme */
       @media (prefers-color-scheme: light) {
         :root:not([data-theme="dark"]) {
           --bg: #f7f8fa;
@@ -78,7 +78,7 @@
         --shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.3);
       }
 
-      /* ── RESET & BASE ── */
+      /* ── RESET ── */
       *,
       *::before,
       *::after {
@@ -96,8 +96,6 @@
         font-size: 16px;
         line-height: 1.65;
         -webkit-font-smoothing: antialiased;
-        padding-inline: 0;
-        padding-block: 0;
       }
       img {
         max-width: 100%;
@@ -116,14 +114,6 @@
         }
       }
 
-      /* ── LAYOUT ── */
-      .container {
-        width: 100%;
-        max-width: 1000px;
-        margin-inline: auto;
-        padding-inline: 24px;
-      }
-
       /* ── NAV ── */
       nav {
         position: sticky;
@@ -139,8 +129,10 @@
         align-items: center;
         justify-content: space-between;
         padding-block: 16px;
-        padding-inline: 24px;
-        max-width: 1000px;
+        padding-inline: 32px;
+        max-width: calc(
+          var(--content-w) + var(--sidebar-w) + var(--gap) + 64px
+        );
         margin-inline: auto;
       }
       .nav-logo {
@@ -152,7 +144,7 @@
       }
       .nav-links {
         display: flex;
-        gap: 32px;
+        gap: 28px;
         list-style: none;
       }
       .nav-links a {
@@ -175,23 +167,135 @@
         border: 1px solid var(--accent-border);
         color: var(--accent);
         border-radius: 4px;
-        transition:
-          background 0.2s,
-          color 0.2s;
+        transition: background 0.2s;
       }
       .nav-cta:hover {
         background: var(--accent-dim);
       }
 
-      /* ── HERO ── */
-      .hero {
-        padding-block: 60px 48px;
+      /* ── PAGE SHELL — two-column ── */
+      .page-shell {
+        max-width: calc(
+          var(--content-w) + var(--sidebar-w) + var(--gap) + 64px
+        );
+        margin-inline: auto;
+        padding-inline: 32px;
+        display: grid;
+        grid-template-columns: 1fr var(--sidebar-w);
+        gap: var(--gap);
+        align-items: start;
       }
-      .hero-inner {
+      .main-col {
+        min-width: 0;
+      }
+
+      /* ── SIDEBAR ── */
+      .sidebar {
+        position: sticky;
+        top: 72px;
         display: flex;
         flex-direction: column;
-        gap: 0;
-        max-width: 720px;
+        gap: 24px;
+        padding-top: 60px;
+      }
+      .sidebar-card {
+        background: var(--bg-2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 18px 20px;
+      }
+      .sidebar-status {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        color: var(--accent);
+        margin-bottom: 6px;
+      }
+      .sidebar-status-dot {
+        width: 7px;
+        height: 7px;
+        background: var(--accent);
+        border-radius: 50%;
+        animation: pulse 2.5s ease-in-out infinite;
+        flex-shrink: 0;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.45;
+          transform: scale(0.8);
+        }
+      }
+      .sidebar-status-label {
+        color: var(--text-2);
+        font-size: 11px;
+        font-family: var(--font-mono);
+        margin-top: 2px;
+      }
+      .sidebar-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .sidebar-nav a {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--text-3);
+        padding: 5px 0;
+        border-left: 2px solid transparent;
+        padding-left: 10px;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+      .sidebar-nav a:hover,
+      .sidebar-nav a.active {
+        color: var(--accent);
+        border-left-color: var(--accent);
+      }
+      .sidebar-contact {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .sidebar-contact a {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--text-3);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: color 0.2s;
+      }
+      .sidebar-contact a:hover {
+        color: var(--accent);
+      }
+      .sidebar-contact svg {
+        width: 12px;
+        height: 12px;
+        flex-shrink: 0;
+      }
+      .sidebar-label {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-3);
+        margin-bottom: 10px;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        padding-block: 60px 40px;
       }
       .hero-badge {
         display: inline-flex;
@@ -204,38 +308,25 @@
         color: var(--accent);
         margin-bottom: 20px;
       }
-      .hero-badge::before {
-        content: "";
+      .hero-badge-dot {
         width: 7px;
         height: 7px;
         background: var(--accent);
         border-radius: 50%;
         animation: pulse 2.5s ease-in-out infinite;
       }
-      @keyframes pulse {
-        0%,
-        100% {
-          opacity: 1;
-          transform: scale(1);
-        }
-        50% {
-          opacity: 0.5;
-          transform: scale(0.85);
-        }
-      }
       .hero-name {
         font-family: var(--font-body);
-        font-size: clamp(44px, 6vw, 72px);
+        font-size: clamp(40px, 5.5vw, 68px);
         line-height: 1;
         letter-spacing: -0.03em;
         font-weight: 600;
         color: var(--text);
-        white-space: nowrap;
         margin-bottom: 12px;
       }
       .hero-role {
         font-family: var(--font-mono);
-        font-size: 15px;
+        font-size: 14px;
         color: var(--text-2);
         letter-spacing: 0.02em;
         margin-bottom: 20px;
@@ -245,10 +336,10 @@
         margin-inline: 6px;
       }
       .hero-bio {
-        font-size: 16px;
+        font-size: 15px;
         color: var(--text-2);
-        max-width: 480px;
-        line-height: 1.7;
+        max-width: 520px;
+        line-height: 1.75;
         margin-bottom: 32px;
       }
       .hero-actions {
@@ -329,39 +420,6 @@
         height: 16px;
       }
 
-      /* headshot */
-      .hero-photo-wrap {
-        position: relative;
-        width: 260px;
-        flex-shrink: 0;
-      }
-      .hero-photo-frame {
-        width: 240px;
-        height: 290px;
-        border-radius: 12px 12px 60px 12px;
-        overflow: hidden;
-        position: relative;
-        border: 1px solid var(--border);
-      }
-      .hero-photo-frame img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center top;
-        filter: grayscale(15%);
-      }
-      .hero-photo-accent {
-        position: absolute;
-        bottom: -12px;
-        right: -12px;
-        width: 90px;
-        height: 90px;
-        border: 2px solid var(--accent);
-        border-radius: 0 0 40px 0;
-        opacity: 0.4;
-        pointer-events: none;
-      }
-
       /* ── STATS STRIP ── */
       .stats-strip {
         border-top: 1px solid var(--border);
@@ -372,10 +430,9 @@
       .stats-inner {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 0;
       }
       .stat-item {
-        padding-inline: 24px;
+        padding-inline: 20px;
         position: relative;
       }
       .stat-item + .stat-item::before {
@@ -389,14 +446,13 @@
       }
       .stat-value {
         font-family: var(--font-display);
-        font-size: 32px;
+        font-size: 30px;
         color: var(--text);
         line-height: 1;
         margin-bottom: 4px;
-        font-variant-numeric: tabular-nums;
       }
       .stat-value em {
-        font-size: 20px;
+        font-size: 18px;
         color: var(--accent);
         font-style: normal;
       }
@@ -422,15 +478,15 @@
       }
       .section-heading {
         font-family: var(--font-display);
-        font-size: clamp(28px, 4vw, 40px);
+        font-size: clamp(26px, 3.5vw, 36px);
         line-height: 1.1;
         text-wrap: balance;
         margin-bottom: 16px;
       }
       .section-sub {
-        font-size: 15px;
+        font-size: 14px;
         color: var(--text-2);
-        max-width: 520px;
+        max-width: 480px;
         margin-bottom: 28px;
       }
       .divider {
@@ -443,28 +499,28 @@
       .about-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 48px;
+        gap: 40px;
         align-items: start;
       }
       .about-lead {
         font-family: var(--font-display);
-        font-size: 22px;
+        font-size: 21px;
         line-height: 1.35;
         color: var(--text);
-        margin-bottom: 20px;
+        margin-bottom: 16px;
       }
       .about-body {
-        font-size: 15px;
+        font-size: 14px;
         color: var(--text-2);
-        line-height: 1.75;
+        line-height: 1.8;
       }
       .principles {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 16px;
       }
       .principle {
-        padding: 20px;
+        padding: 18px 20px;
         background: var(--bg-2);
         border: 1px solid var(--border);
         border-radius: 8px;
@@ -477,7 +533,7 @@
         margin-bottom: 6px;
       }
       .principle-body {
-        font-size: 14px;
+        font-size: 13px;
         color: var(--text-2);
         line-height: 1.6;
       }
@@ -486,11 +542,10 @@
       .exp-list {
         display: flex;
         flex-direction: column;
-        gap: 0;
       }
       .exp-item {
         border-bottom: 1px solid var(--border);
-        padding-block: 28px;
+        padding-block: 24px;
       }
       .exp-item:first-child {
         border-top: 1px solid var(--border);
@@ -503,17 +558,25 @@
         cursor: pointer;
       }
       .exp-role {
-        font-family: var(--font-body);
-        font-size: 17px;
+        font-size: 16px;
         font-weight: 600;
         color: var(--text);
-        margin-bottom: 4px;
+        margin-bottom: 3px;
       }
       .exp-company {
         font-family: var(--font-mono);
         font-size: 12px;
         color: var(--text-2);
         letter-spacing: 0.04em;
+      }
+      .exp-impact {
+        margin-top: 6px;
+        font-size: 13px;
+        color: var(--text-2);
+      }
+      .exp-impact strong {
+        color: var(--accent);
+        font-weight: 500;
       }
       .exp-meta {
         text-align: right;
@@ -530,7 +593,6 @@
         font-family: var(--font-mono);
         font-size: 11px;
         color: var(--accent);
-        letter-spacing: 0.04em;
         background: none;
         border: none;
         cursor: pointer;
@@ -546,17 +608,8 @@
       .exp-toggle.open svg {
         transform: rotate(45deg);
       }
-      .exp-impact {
-        margin-top: 8px;
-        font-size: 14px;
-        color: var(--text-2);
-      }
-      .exp-impact strong {
-        color: var(--accent);
-        font-weight: 500;
-      }
       .exp-body {
-        margin-top: 20px;
+        margin-top: 18px;
         display: none;
       }
       .exp-body.open {
@@ -567,14 +620,14 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
-        margin-bottom: 16px;
+        margin-bottom: 14px;
       }
       .exp-bullets li {
-        font-size: 14px;
+        font-size: 13px;
         color: var(--text-2);
         padding-left: 18px;
         position: relative;
-        line-height: 1.6;
+        line-height: 1.65;
       }
       .exp-bullets li::before {
         content: "→";
@@ -588,11 +641,11 @@
         display: flex;
         flex-wrap: wrap;
         gap: 6px;
-        margin-top: 12px;
+        margin-top: 10px;
       }
       .tag {
         font-family: var(--font-mono);
-        font-size: 11px;
+        font-size: 10px;
         letter-spacing: 0.04em;
         padding: 3px 10px;
         background: var(--bg-3);
@@ -602,77 +655,114 @@
       }
 
       /* ── PROJECTS ── */
-      .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 20px;
-      }
+      /* Staggered tile entrance */
       .project-card {
         background: var(--bg-2);
         border: 1px solid var(--border);
         border-radius: 12px;
-        padding: 28px;
+        padding: 26px;
         display: flex;
         flex-direction: column;
-        gap: 0;
         transition:
           border-color 0.25s,
           box-shadow 0.25s,
           transform 0.2s;
-        cursor: pointer;
+        cursor: default;
+        opacity: 0;
+        transform: translateY(22px);
+        animation: tileIn 0.5s ease forwards;
+      }
+      @keyframes tileIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
       .project-card:hover {
         border-color: var(--accent-border);
         box-shadow: var(--shadow);
         transform: translateY(-2px);
       }
+
+      /* Alternating layout: full / half+half / full */
+      .projects-grid {
+        display: grid;
+        gap: 16px;
+      }
+      .projects-row {
+        display: grid;
+        gap: 16px;
+      }
+      .projects-row.cols-1 {
+        grid-template-columns: 1fr;
+      }
+      .projects-row.cols-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .project-card:nth-child(1) {
+        animation-delay: 0.05s;
+      }
+      .project-card:nth-child(2) {
+        animation-delay: 0.15s;
+      }
+      .project-card:nth-child(3) {
+        animation-delay: 0.25s;
+      }
+      .project-card:nth-child(4) {
+        animation-delay: 0.1s;
+      }
+      .project-card:nth-child(5) {
+        animation-delay: 0.2s;
+      }
+
       .project-year {
         font-family: var(--font-mono);
         font-size: 11px;
         letter-spacing: 0.08em;
         color: var(--text-3);
-        margin-bottom: 12px;
+        margin-bottom: 10px;
       }
       .project-name {
-        font-size: 18px;
+        font-size: 17px;
         font-weight: 600;
         color: var(--text);
-        margin-bottom: 8px;
+        margin-bottom: 6px;
         line-height: 1.25;
       }
       .project-outcome {
         font-family: var(--font-mono);
-        font-size: 12px;
+        font-size: 11px;
         color: var(--accent);
         letter-spacing: 0.04em;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
       }
       .project-desc {
-        font-size: 14px;
+        font-size: 13px;
         color: var(--text-2);
         line-height: 1.65;
-        margin-bottom: 20px;
+        margin-bottom: 18px;
         flex: 1;
       }
       .project-body {
         display: none;
-        margin-bottom: 20px;
+        margin-bottom: 16px;
       }
       .project-body.open {
         display: block;
       }
       .project-body-inner {
-        padding-top: 16px;
+        padding-top: 14px;
         border-top: 1px solid var(--border);
       }
       .project-detail-heading {
         font-family: var(--font-mono);
-        font-size: 11px;
+        font-size: 10px;
         letter-spacing: 0.08em;
         text-transform: uppercase;
         color: var(--text-3);
-        margin-bottom: 8px;
-        margin-top: 14px;
+        margin-bottom: 6px;
+        margin-top: 12px;
       }
       .project-detail-heading:first-child {
         margin-top: 0;
@@ -681,6 +771,13 @@
         font-size: 13px;
         color: var(--text-2);
         line-height: 1.65;
+      }
+      .project-footer {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: auto;
       }
       .project-expand {
         font-family: var(--font-mono);
@@ -705,6 +802,37 @@
       .project-expand.open svg {
         transform: rotate(45deg);
       }
+      .project-gh {
+        font-size: 11px;
+        color: var(--accent);
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        opacity: 0.8;
+        transition: opacity 0.15s;
+      }
+      .project-gh:hover {
+        opacity: 1;
+      }
+      .project-gh svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      /* WIP badge */
+      .badge-wip {
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 2px 7px;
+        background: rgba(77, 255, 210, 0.1);
+        border: 1px solid var(--accent-border);
+        border-radius: 100px;
+        color: var(--accent);
+        margin-left: 8px;
+        vertical-align: middle;
+      }
 
       /* ── SKILLS ── */
       .skills-layout {
@@ -713,79 +841,62 @@
         gap: 8px;
       }
       .skill-group {
-        padding: 20px 24px;
+        padding: 18px 22px;
         border: 1px solid var(--border);
         border-radius: 8px;
         background: var(--bg-2);
         transition: border-color 0.2s;
+        opacity: 0;
+        transform: translateY(16px);
+        animation: tileIn 0.45s ease forwards;
+      }
+      .skill-group:nth-child(1) {
+        animation-delay: 0.05s;
+      }
+      .skill-group:nth-child(2) {
+        animation-delay: 0.1s;
+      }
+      .skill-group:nth-child(3) {
+        animation-delay: 0.15s;
+      }
+      .skill-group:nth-child(4) {
+        animation-delay: 0.2s;
+      }
+      .skill-group:nth-child(5) {
+        animation-delay: 0.25s;
+      }
+      .skill-group:nth-child(6) {
+        animation-delay: 0.3s;
+      }
+      .skill-group:nth-child(7) {
+        animation-delay: 0.35s;
       }
       .skill-group:hover {
         border-color: var(--accent-border);
       }
       .skill-cat {
         font-family: var(--font-mono);
-        font-size: 11px;
+        font-size: 10px;
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--accent);
         margin-bottom: 8px;
       }
       .skill-list {
-        font-size: 14px;
+        font-size: 13px;
         color: var(--text-2);
         line-height: 1.6;
-      }
-
-      .certs-section {
-        margin-top: 48px;
-      }
-      .certs-heading {
-        font-family: var(--font-mono);
-        font-size: 11px;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--text-3);
-        margin-bottom: 16px;
-      }
-      .cert-list {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      .cert-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        gap: 16px;
-        padding-block: 10px;
-        border-bottom: 1px solid var(--border);
-      }
-      .cert-name {
-        font-size: 14px;
-        font-weight: 500;
-        color: var(--text);
-      }
-      .cert-issuer {
-        font-family: var(--font-mono);
-        font-size: 11px;
-        color: var(--text-3);
-      }
-      .cert-year {
-        font-family: var(--font-mono);
-        font-size: 12px;
-        color: var(--text-3);
-        flex-shrink: 0;
       }
 
       /* ── TIMELINE ── */
       .timeline {
         position: relative;
-        padding-left: 32px;
+        padding-left: 28px;
       }
       .timeline::before {
         content: "";
         position: absolute;
-        left: 6px;
+        left: 5px;
         top: 8px;
         bottom: 8px;
         width: 1px;
@@ -797,17 +908,17 @@
       }
       .timeline-item {
         position: relative;
-        margin-bottom: 36px;
+        margin-bottom: 32px;
       }
       .timeline-item:last-child {
         margin-bottom: 0;
       }
       .timeline-dot {
         position: absolute;
-        left: -28px;
+        left: -24px;
         top: 6px;
-        width: 13px;
-        height: 13px;
+        width: 12px;
+        height: 12px;
         border-radius: 50%;
         background: var(--bg);
         border: 2px solid var(--border);
@@ -826,16 +937,16 @@
         font-size: 11px;
         letter-spacing: 0.08em;
         color: var(--text-3);
-        margin-bottom: 4px;
+        margin-bottom: 3px;
       }
       .timeline-title {
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 600;
         color: var(--text);
         margin-bottom: 4px;
       }
       .timeline-body {
-        font-size: 14px;
+        font-size: 13px;
         color: var(--text-2);
         line-height: 1.6;
       }
@@ -846,32 +957,32 @@
         color: var(--accent);
       }
 
-      /* ── CONTACT / FOOTER ── */
+      /* ── CONTACT ── */
       .contact-section {
-        padding-block: 64px 48px;
+        padding-block: 56px 40px;
         border-top: 1px solid var(--border);
       }
       .contact-lead {
         font-family: var(--font-display);
-        font-size: clamp(28px, 4vw, 42px);
+        font-size: clamp(26px, 3.5vw, 38px);
         text-wrap: balance;
-        margin-bottom: 16px;
+        margin-bottom: 14px;
       }
       .contact-sub {
-        font-size: 15px;
+        font-size: 14px;
         color: var(--text-2);
-        margin-bottom: 32px;
-        max-width: 420px;
+        margin-bottom: 28px;
+        max-width: 400px;
       }
       .contact-links {
         display: flex;
-        gap: 16px;
+        gap: 14px;
         flex-wrap: wrap;
         align-items: center;
       }
       .contact-email {
         font-family: var(--font-mono);
-        font-size: 14px;
+        font-size: 13px;
         color: var(--accent);
         border-bottom: 1px solid var(--accent-border);
         padding-bottom: 2px;
@@ -880,8 +991,10 @@
       .contact-email:hover {
         border-color: var(--accent);
       }
+
+      /* ── FOOTER ── */
       .footer-bottom {
-        padding-block: 24px;
+        padding-block: 20px;
         border-top: 1px solid var(--border);
         display: flex;
         justify-content: space-between;
@@ -896,7 +1009,7 @@
       }
       .footer-links {
         display: flex;
-        gap: 20px;
+        gap: 18px;
       }
       .footer-links a {
         font-family: var(--font-mono);
@@ -909,17 +1022,51 @@
         color: var(--accent);
       }
 
+      /* ── SCROLL FADE (sections) ── */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(14px);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* pause tile animations until section is visible */
+      .projects-grid .project-card,
+      .skills-layout .skill-group {
+        animation-play-state: paused;
+      }
+      .projects-grid.animate .project-card,
+      .skills-layout.animate .skill-group {
+        animation-play-state: running;
+      }
+
       /* ── RESPONSIVE ── */
-      @media (max-width: 700px) {
-        .hero-inner {
+      @media (max-width: 900px) {
+        .page-shell {
           grid-template-columns: 1fr;
         }
-        .hero-photo-wrap {
+        .sidebar {
           display: none;
+        }
+        .nav-inner {
+          padding-inline: 20px;
+        }
+      }
+      @media (max-width: 700px) {
+        .page-shell {
+          padding-inline: 16px;
+        }
+        .projects-row.cols-2 {
+          grid-template-columns: 1fr;
         }
         .stats-inner {
           grid-template-columns: repeat(2, 1fr);
-          gap: 24px;
+          gap: 20px;
         }
         .stat-item + .stat-item::before {
           display: none;
@@ -928,9 +1075,6 @@
           grid-template-columns: 1fr;
         }
         .skills-layout {
-          grid-template-columns: 1fr;
-        }
-        .projects-grid {
           grid-template-columns: 1fr;
         }
         .nav-links {
@@ -943,31 +1087,15 @@
       }
       @media (max-width: 480px) {
         .hero {
-          padding-block: 48px 40px;
+          padding-block: 44px 32px;
         }
         .hero-name {
-          font-size: 40px;
-        }
-        .stats-inner {
-          grid-template-columns: 1fr 1fr;
+          font-size: 36px;
         }
         .contact-links {
           flex-direction: column;
           align-items: flex-start;
         }
-      }
-
-      /* scroll-in */
-      .fade-in {
-        opacity: 0;
-        transform: translateY(16px);
-        transition:
-          opacity 0.55s ease,
-          transform 0.55s ease;
-      }
-      .fade-in.visible {
-        opacity: 1;
-        transform: translateY(0);
       }
     </style>
   </head>
@@ -975,7 +1103,7 @@
     <!-- NAV -->
     <nav>
       <div class="nav-inner">
-        <span class="nav-logo">Akshat Bansal</span>
+        <span class="nav-logo">AB</span>
         <ul class="nav-links">
           <li><a href="#about">About</a></li>
           <li><a href="#experience">Experience</a></li>
@@ -989,952 +1117,993 @@
       </div>
     </nav>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero-inner">
-          <div class="hero-text">
-            <div class="hero-badge">
-              Open to backend, full-stack &amp; AI roles
-            </div>
-            <h1 class="hero-name">Akshat Bansal</h1>
-            <p class="hero-role">
-              Data Engineer <span class="arrow">→</span> Backend &amp; AI
-              Engineer
-            </p>
-            <p class="hero-bio">
-              I build production data systems on GCP — pipelines that don't page
-              you at 3am, warehouses with real SLAs, services that stay boring.
-              Now channeling that discipline into backend and applied AI.
-            </p>
-            <div class="hero-actions">
-              <a href="#projects" class="btn-primary">
-                View projects
-                <svg
-                  width="14"
-                  height="14"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
+    <!-- TWO-COLUMN SHELL -->
+    <div class="page-shell">
+      <main class="main-col">
+        <!-- HERO -->
+        <section class="hero">
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Open to backend &amp; AI roles
+          </div>
+          <h1 class="hero-name">Akshat Bansal</h1>
+          <p class="hero-role">
+            Data Engineer <span class="arrow">→</span> Backend &amp; AI Engineer
+          </p>
+          <p class="hero-bio">
+            2+ years shipping production data systems on GCP — pipelines that
+            don't page you at 3am, warehouses with real SLAs, AI services with
+            eval harnesses. Now going deeper into backend engineering and
+            applied AI.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn-primary">
+              View projects
+              <svg
+                width="14"
+                height="14"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+            <a
+              href="https://drive.google.com/file/d/1GKIOpRSaL8JkB7TZXQzNc5JPLCkw6qWI/view?usp=sharing"
+              target="_blank"
+              rel="noopener"
+              class="btn-outline"
+            >
+              <svg
+                width="14"
+                height="14"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                />
+                <polyline points="14 2 14 8 20 8" />
+              </svg>
+              Resume
+            </a>
+            <div class="icon-links">
+              <a
+                href="https://github.com/Abtg08"
+                target="_blank"
+                rel="noopener"
+                class="icon-link"
+                aria-label="GitHub"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
+                  />
                 </svg>
               </a>
               <a
-                href="https://drive.google.com/file/d/1GKIOpRSaL8JkB7TZXQzNc5JPLCkw6qWI/view?usp=sharing"
+                href="https://www.linkedin.com/in/akshat-bansal-b7585a242/"
                 target="_blank"
                 rel="noopener"
-                class="btn-outline"
+                class="icon-link"
+                aria-label="LinkedIn"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="mailto:akshatbansal161@gmail.com"
+                class="icon-link"
+                aria-label="Email"
               >
                 <svg
-                  width="14"
-                  height="14"
+                  viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   stroke-width="2"
-                  viewBox="0 0 24 24"
                 >
-                  <path
-                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-                  />
-                  <polyline points="14 2 14 8 20 8" />
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                 </svg>
-                Resume
               </a>
-              <div class="icon-links">
-                <a
-                  href="https://github.com/Abtg08"
-                  target="_blank"
-                  rel="noopener"
-                  class="icon-link"
-                  aria-label="GitHub"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
-                    />
-                  </svg>
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/akshat-bansal-b7585a242/"
-                  target="_blank"
-                  rel="noopener"
-                  class="icon-link"
-                  aria-label="LinkedIn"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-                    />
-                  </svg>
-                </a>
-                <a
-                  href="mailto:akshatbansal161@gmail.com"
-                  class="icon-link"
-                  aria-label="Email"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
+              <a
+                href="https://x.com/aeebeey"
+                target="_blank"
+                rel="noopener"
+                class="icon-link"
+                aria-label="X / Twitter"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.26 5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- STATS -->
+        <div class="stats-strip">
+          <div class="stats-inner">
+            <div class="stat-item">
+              <div class="stat-value">40<em>%</em></div>
+              <div class="stat-label">Cost reduction</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">50<em>M+</em></div>
+              <div class="stat-label">Events / day</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">&lt;5<em>min</em></div>
+              <div class="stat-label">Data freshness SLA</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">99.9<em>%</em></div>
+              <div class="stat-label">Pipeline uptime</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ABOUT -->
+        <section id="about" class="fade-in">
+          <div class="section-eyebrow">About</div>
+          <div class="about-grid">
+            <div>
+              <p class="about-lead">
+                An engineer who cares about the boring parts.
+              </p>
+              <p class="about-body">
+                Data Engineer with 2+ years of production experience shipping
+                pipelines, warehouses, and services on Google Cloud. Comfortable
+                with the unsexy parts: schemas, SLAs, cost, observability.<br /><br />
+                The discipline of data engineering — owning a system end to end,
+                caring about contracts and consumers, building with rollbacks in
+                mind — is exactly what I bring to backend and AI work. Now going
+                deeper into distributed systems and applied AI: LLMs, RAG,
+                evals.
+              </p>
+            </div>
+            <div class="principles">
+              <div class="principle">
+                <div class="principle-title">
+                  Boring tech, boring incidents.
+                </div>
+                <div class="principle-body">
+                  Reach for the well-worn tool first. Add complexity only when
+                  the metrics demand it.
+                </div>
+              </div>
+              <div class="principle">
+                <div class="principle-title">Ship it with a leash.</div>
+                <div class="principle-body">
+                  Every service I own has a test, a metric, and a rollback path.
+                  Fast iteration is only fast if recovery is faster.
+                </div>
+              </div>
+              <div class="principle">
+                <div class="principle-title">Data is a product.</div>
+                <div class="principle-body">
+                  Pipelines have consumers. Contracts, SLAs, and clear ownership
+                  matter as much as the code.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- EXPERIENCE -->
+        <section id="experience" class="fade-in">
+          <div class="section-eyebrow">Experience</div>
+          <h2 class="section-heading">Where I've shipped in production.</h2>
+
+          <div class="exp-list">
+            <div class="exp-item">
+              <div class="exp-header" onclick="toggleExp(this)">
+                <div>
+                  <div class="exp-role">Data Engineer</div>
+                  <div class="exp-company">DataVinci Analytics · Remote</div>
+                  <div class="exp-impact">
+                    Reduced warehouse cost by <strong>40%</strong> · drove
+                    <strong>99.9%</strong> pipeline uptime
+                  </div>
+                </div>
+                <div class="exp-meta">
+                  <div class="exp-period">2024 — Present</div>
+                  <button class="exp-toggle" aria-label="Expand">
+                    <svg
+                      width="14"
+                      height="14"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="exp-body">
+                <ul class="exp-bullets">
+                  <li>
+                    Designed and owned a streaming pipeline processing 50M+
+                    events/day into BigQuery — migrated from batch, cut data
+                    freshness from 24h to &lt;5 min.
+                  </li>
+                  <li>
+                    Reduced warehouse compute cost by 40% through partitioning
+                    strategy, clustering on high-cardinality dimensions, and
+                    query-level optimization with dbt.
+                  </li>
+                  <li>
+                    Maintained 99.9% pipeline uptime via Cloud Run health
+                    checks, Pub/Sub DLQs, and Terraform-managed infra with full
+                    rollback paths.
+                  </li>
+                  <li>
+                    Shipped the first RAG service in production — FastAPI +
+                    pgvector + OpenAI, with an eval harness integrated into CI.
+                  </li>
+                  <li>
+                    Headed internal data tooling projects, coordinating across
+                    engineering and analytics to deliver on time with clear
+                    ownership boundaries.
+                  </li>
+                </ul>
+                <div class="tag-row">
+                  <span class="tag">GCP</span><span class="tag">BigQuery</span
+                  ><span class="tag">Cloud Run</span
+                  ><span class="tag">Pub/Sub</span
+                  ><span class="tag">Terraform</span><span class="tag">dbt</span
+                  ><span class="tag">Python</span
+                  ><span class="tag">Airflow</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-header" onclick="toggleExp(this)">
+                <div>
+                  <div class="exp-role">
+                    Software &amp; AI Engineering (self-directed)
+                  </div>
+                  <div class="exp-company">Freelance / Personal · Remote</div>
+                  <div class="exp-impact">
+                    RAG service in production · distributed systems design ·
+                    fullstack projects
+                  </div>
+                </div>
+                <div class="exp-meta">
+                  <div class="exp-period">2024 — Present</div>
+                  <button class="exp-toggle" aria-label="Expand">
+                    <svg
+                      width="14"
+                      height="14"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="exp-body">
+                <ul class="exp-bullets">
+                  <li>
+                    Built a RAG docs assistant with FastAPI, pgvector, and
+                    OpenAI — includes source citations and an eval harness for
+                    retrieval quality.
+                  </li>
+                  <li>
+                    Designed a distributed URL shortener: base62 IDs, Redis
+                    caching, rate limiting, horizontal scale on Cloud Run.
+                  </li>
+                  <li>
+                    Building Arcane, an AI capability and execution platform in
+                    TypeScript — typed capability registry, execution tracing,
+                    structured output validation.
+                  </li>
+                  <li>
+                    Working through DDIA and building Go services to internalize
+                    distributed primitives and concurrency patterns.
+                  </li>
+                </ul>
+                <div class="tag-row">
+                  <span class="tag">Python</span><span class="tag">FastAPI</span
+                  ><span class="tag">TypeScript</span
+                  ><span class="tag">Next.js</span
+                  ><span class="tag">OpenAI</span><span class="tag">Go</span
+                  ><span class="tag">Kotlin</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- PROJECTS -->
+        <section id="projects" class="fade-in">
+          <div class="section-eyebrow">Projects</div>
+          <h2 class="section-heading">Case studies, not screenshots.</h2>
+          <p class="section-sub">
+            Problem, architecture, decisions — the full picture.
+          </p>
+
+          <div class="projects-grid" id="projectsGrid">
+            <!-- Row 1: full width -->
+            <div class="projects-row cols-1">
+              <div class="project-card">
+                <div class="project-year">
+                  2026 <span class="badge-wip">In Progress</span>
+                </div>
+                <div class="project-name">Arcane</div>
+                <div class="project-outcome">
+                  Production-grade AI capability &amp; execution platform
+                </div>
+                <div class="project-desc">
+                  A TypeScript platform for composing, deploying, and executing
+                  AI capabilities at production scale. Built for the gap between
+                  a working demo and a real agentic system — typed capability
+                  registry, execution tracing, structured output validation.
+                </div>
+                <div class="project-body">
+                  <div class="project-body-inner">
+                    <div class="project-detail-heading">Problem</div>
+                    <div class="project-detail-text">
+                      Most AI tooling stops at the prototype layer. Teams hit a
+                      wall moving from demo to production — no structured
+                      capability management, no reliable orchestration, no
+                      observability into what the agent actually did.
+                    </div>
+                    <div class="project-detail-heading">Architecture</div>
+                    <div class="project-detail-text">
+                      TypeScript monorepo. Each AI skill is a typed, versioned
+                      unit in a capability registry. Execution engine handles
+                      retries, timeouts, and structured output validation.
+                      Designed for composability across multiple LLM backends.
+                    </div>
+                    <div class="project-detail-heading">Design goals</div>
+                    <div class="project-detail-text">
+                      Strong typing throughout so AI output contracts are
+                      enforced at compile time, not discovered at runtime. Built
+                      observability hooks from the start — every execution is
+                      traceable.
+                    </div>
+                  </div>
+                </div>
+                <div class="tag-row" style="margin-bottom: 14px">
+                  <span class="tag">TypeScript</span><span class="tag">AI</span
+                  ><span class="tag">Agentic</span><span class="tag">LLMs</span>
+                </div>
+                <div class="project-footer">
+                  <button class="project-expand" onclick="toggleProject(this)">
+                    Full case study
+                    <svg
+                      width="12"
+                      height="12"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                  </button>
+                  <a
+                    href="https://github.com/Abtg08/arcane"
+                    target="_blank"
+                    rel="noopener"
+                    class="project-gh"
+                    ><svg viewBox="0 0 24 24" fill="currentColor">
+                      <path
+                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
+                      />
+                    </svg>
+                    View on GitHub</a
                   >
-                    <rect x="2" y="4" width="20" height="16" rx="2" />
-                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                  </svg>
-                </a>
-                <a
-                  href="https://x.com/aeebeey"
-                  target="_blank"
-                  rel="noopener"
-                  class="icon-link"
-                  aria-label="X / Twitter"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.26 5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- STATS -->
-    <div class="stats-strip">
-      <div class="container">
-        <div class="stats-inner">
-          <div class="stat-item">
-            <div class="stat-value">40<em>%</em></div>
-            <div class="stat-label">Warehouse cost reduced</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value">50<em>M+</em></div>
-            <div class="stat-label">Events / day processed</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value">&lt;5<em>min</em></div>
-            <div class="stat-label">Data freshness SLA</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value">99.9<em>%</em></div>
-            <div class="stat-label">Pipeline uptime</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ABOUT -->
-    <section id="about" class="fade-in">
-      <div class="container">
-        <div class="section-eyebrow">About</div>
-        <div class="about-grid">
-          <div>
-            <p class="about-lead">
-              An engineer who cares about the boring parts.
-            </p>
-            <p class="about-body">
-              Data Engineer with 2+ years of production experience shipping
-              pipelines, warehouses, and services on Google Cloud. Comfortable
-              with the unsexy parts — schemas, SLAs, cost, observability — and
-              now going deeper into distributed backends and applied AI (LLMs,
-              RAG, evals).<br /><br />
-              The discipline of data engineering — owning a system end to end,
-              caring about contracts and consumers, building with rollbacks in
-              mind — is exactly what I bring to backend and AI work.
-            </p>
-          </div>
-          <div class="principles">
-            <div class="principle">
-              <div class="principle-title">Boring tech, boring incidents.</div>
-              <div class="principle-body">
-                Reach for the well-worn tool first — Postgres, cron, Cloud Run —
-                and only add complexity when the metrics demand it.
-              </div>
-            </div>
-            <div class="principle">
-              <div class="principle-title">Ship it with a leash.</div>
-              <div class="principle-body">
-                Every service I own has a test, a metric, and a rollback. Fast
-                iteration is only fast if the recovery path is faster.
-              </div>
-            </div>
-            <div class="principle">
-              <div class="principle-title">Data is a product.</div>
-              <div class="principle-body">
-                Pipelines have consumers. Contracts, SLAs, and clear ownership
-                matter as much as the code.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="divider container"></div>
-
-    <!-- EXPERIENCE -->
-    <section id="experience" class="fade-in">
-      <div class="container">
-        <div class="section-eyebrow">Experience</div>
-        <h2 class="section-heading">Where I've shipped in production.</h2>
-
-        <div class="exp-list">
-          <!-- Role 1 -->
-          <div class="exp-item">
-            <div class="exp-header" onclick="toggleExp(this)">
-              <div>
-                <div class="exp-role">Data Engineer</div>
-                <div class="exp-company">
-                  Confidential Product Startup · Remote
-                </div>
-                <div class="exp-impact">
-                  Reduced warehouse cost by <strong>40%</strong> · drove
-                  <strong>99.9%</strong> pipeline uptime
                 </div>
               </div>
-              <div class="exp-meta">
-                <div class="exp-period">2024 — Present</div>
-                <button class="exp-toggle" aria-label="Expand">
-                  <svg
-                    width="14"
-                    height="14"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    viewBox="0 0 24 24"
+            </div>
+
+            <!-- Row 2: two columns -->
+            <div class="projects-row cols-2">
+              <div class="project-card">
+                <div class="project-year">
+                  2026 <span class="badge-wip">In Progress</span>
+                </div>
+                <div class="project-name">Aegis Agent</div>
+                <div class="project-outcome">
+                  Private, local-first Android AI agent
+                </div>
+                <div class="project-desc">
+                  On-device Android AI agent that runs entirely locally — no
+                  cloud calls, no data leaving the device. Built in Kotlin for
+                  privacy-first AI assistance on mobile.
+                </div>
+                <div class="project-body">
+                  <div class="project-body-inner">
+                    <div class="project-detail-heading">Why local-first</div>
+                    <div class="project-detail-text">
+                      Most mobile AI assistants pipe everything to a remote
+                      server. Aegis keeps inference on-device — faster for
+                      latency-sensitive tasks, private by design, works offline.
+                    </div>
+                    <div class="project-detail-heading">Architecture</div>
+                    <div class="project-detail-text">
+                      Kotlin Android app with on-device model inference. Agent
+                      loop handles task decomposition and tool invocation
+                      locally. Minimal-permission model — only asks for what it
+                      needs.
+                    </div>
+                    <div class="project-detail-heading">Key challenge</div>
+                    <div class="project-detail-text">
+                      Balancing model capability against memory and battery
+                      constraints. The agent architecture needed to be
+                      interruptible and resumable without losing state.
+                    </div>
+                  </div>
+                </div>
+                <div class="tag-row" style="margin-bottom: 14px">
+                  <span class="tag">Kotlin</span><span class="tag">Android</span
+                  ><span class="tag">On-device AI</span>
+                </div>
+                <div class="project-footer">
+                  <button class="project-expand" onclick="toggleProject(this)">
+                    Full case study
+                    <svg
+                      width="12"
+                      height="12"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                  </button>
+                  <a
+                    href="https://github.com/Abtg08/aegis-agent"
+                    target="_blank"
+                    rel="noopener"
+                    class="project-gh"
+                    ><svg viewBox="0 0 24 24" fill="currentColor">
+                      <path
+                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
+                      />
+                    </svg>
+                    GitHub</a
                   >
-                    <line x1="12" y1="5" x2="12" y2="19" />
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                  </svg>
-                </button>
+                </div>
               </div>
-            </div>
-            <div class="exp-body">
-              <ul class="exp-bullets">
-                <li>
-                  Designed and owned a streaming pipeline processing 50M+
-                  events/day into BigQuery — migrated from batch, cut freshness
-                  from 24h to &lt;5 min.
-                </li>
-                <li>
-                  Reduced warehouse compute cost by 40% through partitioning
-                  strategy, clustering on high-cardinality dims, and query-level
-                  optimization with dbt.
-                </li>
-                <li>
-                  Maintained 99.9% pipeline uptime via Cloud Run health checks,
-                  Pub/Sub DLQs, and Terraform-managed infra with full rollback
-                  paths.
-                </li>
-                <li>
-                  Shipped the first RAG service in production — FastAPI +
-                  pgvector, with a small eval harness integrated into CI.
-                </li>
-              </ul>
-              <div class="tag-row">
-                <span class="tag">GCP</span><span class="tag">BigQuery</span
-                ><span class="tag">Cloud Run</span
-                ><span class="tag">Pub/Sub</span
-                ><span class="tag">Terraform</span><span class="tag">dbt</span
-                ><span class="tag">Python</span>
-              </div>
-            </div>
-          </div>
 
-          <!-- Role 2 -->
-          <div class="exp-item">
-            <div class="exp-header" onclick="toggleExp(this)">
-              <div>
-                <div class="exp-role">
-                  Software &amp; AI Engineering (self-directed)
+              <div class="project-card">
+                <div class="project-year">
+                  2026 <span class="badge-wip">In Progress</span>
                 </div>
-                <div class="exp-company">Freelance / Personal · Remote</div>
-                <div class="exp-impact">
-                  RAG service · distributed system design · fullstack projects
+                <div class="project-name">Multi-Channel Data Platform</div>
+                <div class="project-outcome">
+                  Unified cross-channel analytics pipeline
+                </div>
+                <div class="project-desc">
+                  A GCP-native pipeline unifying data across marketing channels,
+                  CRM, and billing into a single analytics layer — powering
+                  attribution, ROI reporting, and campaign dashboards.
+                </div>
+                <div class="project-body">
+                  <div class="project-body-inner">
+                    <div class="project-detail-heading">Problem</div>
+                    <div class="project-detail-text">
+                      Marketing data lived in disconnected silos. Attribution
+                      and ROI were computed manually via spreadsheet merges —
+                      slow, error-prone, and impossible to audit.
+                    </div>
+                    <div class="project-detail-heading">Architecture</div>
+                    <div class="project-detail-text">
+                      Python ingestion jobs pull from source APIs into GCS.
+                      Cloud Run workers normalize and load to BigQuery. dbt
+                      models compute attribution logic. Terraform manages all
+                      infra.
+                    </div>
+                    <div class="project-detail-heading">Key decision</div>
+                    <div class="project-detail-text">
+                      GCS as raw landing zone for replay capability. Attribution
+                      logic lives entirely in dbt so analysts can iterate
+                      without touching ingestion code.
+                    </div>
+                  </div>
+                </div>
+                <div class="tag-row" style="margin-bottom: 14px">
+                  <span class="tag">GCP</span><span class="tag">BigQuery</span
+                  ><span class="tag">dbt</span><span class="tag">Cloud Run</span
+                  ><span class="tag">Terraform</span>
+                </div>
+                <div class="project-footer">
+                  <button class="project-expand" onclick="toggleProject(this)">
+                    Full case study
+                    <svg
+                      width="12"
+                      height="12"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                  </button>
                 </div>
               </div>
-              <div class="exp-meta">
-                <div class="exp-period">2024 — Present</div>
-                <button class="exp-toggle" aria-label="Expand">
-                  <svg
-                    width="14"
-                    height="14"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    viewBox="0 0 24 24"
+            </div>
+
+            <!-- Row 3: full width -->
+            <div class="projects-row cols-1">
+              <div class="project-card">
+                <div class="project-year">2024</div>
+                <div class="project-name">Marketing Revenue Data Platform</div>
+                <div class="project-outcome">
+                  Multi-source GCP analytics · campaign attribution
+                </div>
+                <div class="project-desc">
+                  End-to-end marketing analytics platform on GCP that unifies ad
+                  spend, CRM, and revenue data to power attribution reporting. A
+                  reference for how to build a clean, auditable analytics stack
+                  from scratch.
+                </div>
+                <div class="project-body">
+                  <div class="project-body-inner">
+                    <div class="project-detail-heading">Architecture</div>
+                    <div class="project-detail-text">
+                      Python ingestion jobs pull from multiple source APIs into
+                      GCS. Cloud Run workers normalize and load to BigQuery. dbt
+                      models compute attribution logic. Terraform manages
+                      infrastructure.
+                    </div>
+                    <div class="project-detail-heading">Key decisions</div>
+                    <div class="project-detail-text">
+                      GCS as raw landing zone for replay capability. Attribution
+                      logic lives in dbt so analysts can modify it without
+                      touching ingestion code. Full infra-as-code for
+                      reproducibility.
+                    </div>
+                  </div>
+                </div>
+                <div class="tag-row" style="margin-bottom: 14px">
+                  <span class="tag">GCP</span><span class="tag">BigQuery</span
+                  ><span class="tag">Cloud Run</span><span class="tag">dbt</span
+                  ><span class="tag">Python</span
+                  ><span class="tag">Terraform</span>
+                </div>
+                <div class="project-footer">
+                  <button class="project-expand" onclick="toggleProject(this)">
+                    Full case study
+                    <svg
+                      width="12"
+                      height="12"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                  </button>
+                  <a
+                    href="https://github.com/Abtg08/marketing-revenue-data-platform-using-gcp"
+                    target="_blank"
+                    rel="noopener"
+                    class="project-gh"
+                    ><svg viewBox="0 0 24 24" fill="currentColor">
+                      <path
+                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
+                      />
+                    </svg>
+                    View on GitHub</a
                   >
-                    <line x1="12" y1="5" x2="12" y2="19" />
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                  </svg>
-                </button>
+                </div>
               </div>
             </div>
-            <div class="exp-body">
-              <ul class="exp-bullets">
-                <li>
-                  Built a RAG docs assistant with FastAPI, pgvector, and OpenAI
-                  — includes source citations and an eval harness for retrieval
-                  quality.
-                </li>
-                <li>
-                  Designed a distributed URL shortener from scratch: base62 IDs,
-                  Redis caching, rate limiting, horizontal scale on Cloud Run.
-                </li>
-                <li>
-                  Working through DDIA and building small Go services to
-                  internalize distributed primitives and concurrency patterns.
-                </li>
-              </ul>
-              <div class="tag-row">
-                <span class="tag">Python</span><span class="tag">FastAPI</span
-                ><span class="tag">TypeScript</span
-                ><span class="tag">Next.js</span><span class="tag">OpenAI</span
-                ><span class="tag">Go</span>
+
+            <!-- Row 4: full width -->
+            <div class="projects-row cols-1">
+              <div class="project-card">
+                <div class="project-year">2024</div>
+                <div class="project-name">Event-Driven Data Pipeline</div>
+                <div class="project-outcome">
+                  Reference architecture for event-driven ETL
+                </div>
+                <div class="project-desc">
+                  A working reference implementation of event-driven data
+                  pipeline patterns — DLQ handling, idempotency, backpressure,
+                  and exactly-once semantics. Designed to be cloned and extended
+                  for real streaming ETL use cases.
+                </div>
+                <div class="project-body">
+                  <div class="project-body-inner">
+                    <div class="project-detail-heading">Architecture</div>
+                    <div class="project-detail-text">
+                      Producer to message broker to consumer workers to storage
+                      sink. Each stage is independently deployable. DLQ on every
+                      consumer. Exactly-once semantics via idempotency keys.
+                    </div>
+                    <div class="project-detail-heading">Patterns covered</div>
+                    <div class="project-detail-text">
+                      Fan-out, competing consumers, saga for distributed
+                      transactions, outbox pattern for reliable event publishing
+                      from a transactional database.
+                    </div>
+                  </div>
+                </div>
+                <div class="tag-row" style="margin-bottom: 14px">
+                  <span class="tag">Python</span><span class="tag">Pub/Sub</span
+                  ><span class="tag">Event-driven</span
+                  ><span class="tag">ETL</span><span class="tag">Docker</span>
+                </div>
+                <div class="project-footer">
+                  <button class="project-expand" onclick="toggleProject(this)">
+                    Full case study
+                    <svg
+                      width="12"
+                      height="12"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                  </button>
+                  <a
+                    href="https://github.com/Abtg08/event-driven-data-pipelining"
+                    target="_blank"
+                    rel="noopener"
+                    class="project-gh"
+                    ><svg viewBox="0 0 24 24" fill="currentColor">
+                      <path
+                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
+                      />
+                    </svg>
+                    View on GitHub</a
+                  >
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <div class="divider container"></div>
+        <div class="divider"></div>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="fade-in">
-      <div class="container">
-        <div class="section-eyebrow">Projects</div>
-        <h2 class="section-heading">Case studies, not screenshots.</h2>
-        <p class="section-sub">
-          Each project reads like a mini design doc — problem, architecture,
-          decisions, measured results.
-        </p>
+        <!-- SKILLS -->
+        <section id="skills" class="fade-in">
+          <div class="section-eyebrow">Skills</div>
+          <h2 class="section-heading">What I reach for, and why.</h2>
 
-        <div class="projects-grid">
-          <div class="project-card">
-            <div class="project-year">2025</div>
-            <div class="project-name">Marketing Revenue Data Platform</div>
-            <div class="project-outcome">
-              Multi-source GCP analytics · campaign attribution
-            </div>
-            <div class="project-desc">
-              End-to-end marketing analytics platform on GCP that unifies ad
-              spend, CRM, and revenue data across sources to power attribution
-              reporting and campaign ROI dashboards.
-            </div>
-            <div class="project-body">
-              <div class="project-body-inner">
-                <div class="project-detail-heading">Problem</div>
-                <div class="project-detail-text">
-                  Marketing data lived in disconnected silos — ad platforms,
-                  CRM, billing — making attribution and ROI impossible to
-                  compute reliably. Every report was a manual spreadsheet merge.
-                </div>
-                <div class="project-detail-heading">Architecture</div>
-                <div class="project-detail-text">
-                  Python ingestion jobs pull from multiple source APIs into GCS.
-                  Cloud Run workers normalize and load to BigQuery. dbt models
-                  compute attribution logic. Terraform manages all
-                  infrastructure.
-                </div>
-                <div class="project-detail-heading">Key decisions</div>
-                <div class="project-detail-text">
-                  Chose GCS as the raw landing zone for replay capability.
-                  Attribution logic lives entirely in dbt so analysts can modify
-                  it without touching ingestion code.
-                </div>
+          <div class="skills-layout" id="skillsGrid">
+            <div class="skill-group">
+              <div class="skill-cat">Cloud &amp; Infra</div>
+              <div class="skill-list">
+                GCP, BigQuery, Cloud Run, Pub/Sub, Cloud Storage, AWS,
+                Terraform, Docker, GitHub Actions
               </div>
             </div>
-            <div class="tag-row" style="margin-bottom: 16px">
-              <span class="tag">GCP</span><span class="tag">BigQuery</span
-              ><span class="tag">Cloud Run</span><span class="tag">dbt</span
-              ><span class="tag">Python</span><span class="tag">Terraform</span>
+            <div class="skill-group">
+              <div class="skill-cat">Languages</div>
+              <div class="skill-list">
+                Python, SQL, TypeScript, Bash, Go, C++, Scala
+              </div>
             </div>
-            <div
-              style="
-                display: flex;
-                gap: 10px;
-                align-items: center;
-                flex-wrap: wrap;
-              "
+            <div class="skill-group">
+              <div class="skill-cat">Backend</div>
+              <div class="skill-list">
+                FastAPI, Node.js, REST, async Python, background task queues
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-cat">AI / ML</div>
+              <div class="skill-list">
+                LLMs, RAG, OpenAI API, LangChain, Embeddings, pgvector, Evals,
+                agentic workflows
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-cat">Data Engineering</div>
+              <div class="skill-list">
+                dbt, Airflow, Spark / PySpark, streaming ETL, data modeling,
+                Pub/Sub pipelines
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-cat">Databases</div>
+              <div class="skill-list">
+                PostgreSQL, BigQuery, Snowflake, Databricks, Redis, MySQL
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-cat">BI &amp; Visualization</div>
+              <div class="skill-list">
+                Looker Studio, Tableau, Power BI, GA4
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-cat">Libraries</div>
+              <div class="skill-list">
+                Pandas, NumPy, Scikit-learn, Matplotlib, Plotly
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- TIMELINE -->
+        <section id="timeline" class="fade-in">
+          <div class="section-eyebrow">Timeline</div>
+          <h2 class="section-heading">How I got here.</h2>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-date">2024</div>
+              <div class="timeline-title">
+                Joined DataVinci Analytics as Data Engineer
+              </div>
+              <div class="timeline-body">
+                GCP data platform from day one — dbt models, Terraform infra,
+                BigQuery warehouse ownership. Built and maintained pipelines
+                used in production within the first quarter.
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-date">Early 2025</div>
+              <div class="timeline-title">
+                Owned the batch-to-streaming migration
+              </div>
+              <div class="timeline-body">
+                Designed and shipped the streaming pipeline handling 50M+
+                events/day. Cut data freshness from 24h to under 5 minutes. Sole
+                owner of architecture, implementation, and on-call runbook.
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-date">Mid 2025</div>
+              <div class="timeline-title">Cost and reliability ownership</div>
+              <div class="timeline-body">
+                Drove warehouse cost down 40% through partitioning, clustering,
+                and dbt query optimization. Hardened pipeline reliability to
+                99.9% uptime with DLQs, health checks, and incident runbooks.
+              </div>
+            </div>
+            <div class="timeline-item current">
+              <div class="timeline-dot"></div>
+              <div class="timeline-date">2026</div>
+              <div class="timeline-title">
+                First AI service in production + side bets
+              </div>
+              <div class="timeline-body">
+                Shipped a RAG docs assistant in production (FastAPI + pgvector +
+                eval harness in CI). Simultaneously building Arcane and Aegis
+                Agent — AI systems work that goes beyond the day job.
+              </div>
+            </div>
+            <div class="timeline-item future">
+              <div class="timeline-dot"></div>
+              <div class="timeline-date">Next</div>
+              <div class="timeline-title">
+                Backend / AI engineering at a product company
+              </div>
+              <div class="timeline-body">
+                Looking for a team building AI-native systems where data
+                engineering rigor meets backend depth. Open to roles now.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="contact-section fade-in">
+          <h2 class="contact-lead">Let's work together.</h2>
+          <p class="contact-sub">
+            Open to backend, full-stack, and AI engineering roles. Prefer
+            product companies building systems that matter.
+          </p>
+          <div class="contact-links">
+            <a href="mailto:akshatbansal161@gmail.com" class="contact-email"
+              >akshatbansal161@gmail.com</a
             >
-              <button class="project-expand" onclick="toggleProject(this)">
-                Full case study
-                <svg
-                  width="12"
-                  height="12"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                >
-                  <line x1="12" y1="5" x2="12" y2="19" />
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                </svg>
-              </button>
-              <a
-                href="https://github.com/Abtg08/marketing-revenue-data-platform-using-gcp"
-                target="_blank"
-                rel="noopener"
-                style="
-                  font-size: 12px;
-                  color: var(--accent);
-                  display: flex;
-                  align-items: center;
-                  gap: 4px;
-                  opacity: 0.85;
-                  transition: opacity 0.15s;
-                "
-                onmouseover="this.style.opacity = 1"
-                onmouseout="this.style.opacity = 0.85"
+            <a
+              href="https://github.com/Abtg08"
+              target="_blank"
+              rel="noopener"
+              class="btn-outline"
+              style="font-size: 12px; padding: 8px 16px"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="currentColor"
               >
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
-                  />
-                </svg>
-                View on GitHub
-              </a>
-            </div>
-          </div>
-
-          <div class="project-card">
-            <div class="project-year">2025</div>
-            <div class="project-name">Arcane</div>
-            <div class="project-outcome">
-              Production-grade AI capability &amp; execution platform
-            </div>
-            <div class="project-desc">
-              A TypeScript platform for composing, deploying, and executing AI
-              capabilities at production scale — modular architecture designed
-              for real agentic workflows beyond demos.
-            </div>
-            <div class="project-body">
-              <div class="project-body-inner">
-                <div class="project-detail-heading">Problem</div>
-                <div class="project-detail-text">
-                  Most AI tooling stops at the prototype layer. Arcane is built
-                  for the gap between a working demo and a production-grade AI
-                  system — structured capability management, execution tracing,
-                  and reliable orchestration.
-                </div>
-                <div class="project-detail-heading">Architecture</div>
-                <div class="project-detail-text">
-                  TypeScript monorepo. Capability registry pattern — each AI
-                  skill is a typed, versioned unit. Execution engine handles
-                  retries, timeouts, and structured output validation. Designed
-                  for composability.
-                </div>
-                <div class="project-detail-heading">Design goals</div>
-                <div class="project-detail-text">
-                  Strong typing throughout so AI output contracts are enforced
-                  at compile time, not discovered at runtime. Built
-                  observability hooks from the start — every execution is
-                  traceable.
-                </div>
-              </div>
-            </div>
-            <div class="tag-row" style="margin-bottom: 16px">
-              <span class="tag">TypeScript</span><span class="tag">AI</span
-              ><span class="tag">Agentic</span><span class="tag">LLMs</span>
-            </div>
-            <div
-              style="
-                display: flex;
-                gap: 10px;
-                align-items: center;
-                flex-wrap: wrap;
-              "
-            >
-              <button class="project-expand" onclick="toggleProject(this)">
-                Full case study
-                <svg
-                  width="12"
-                  height="12"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                >
-                  <line x1="12" y1="5" x2="12" y2="19" />
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                </svg>
-              </button>
-              <a
-                href="https://github.com/Abtg08/arcane"
-                target="_blank"
-                rel="noopener"
-                style="
-                  font-size: 12px;
-                  color: var(--accent);
-                  display: flex;
-                  align-items: center;
-                  gap: 4px;
-                  opacity: 0.85;
-                  transition: opacity 0.15s;
-                "
-                onmouseover="this.style.opacity = 1"
-                onmouseout="this.style.opacity = 0.85"
-              >
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
-                  />
-                </svg>
-                View on GitHub
-              </a>
-            </div>
-          </div>
-
-          <div class="project-card">
-            <div class="project-year">2025</div>
-            <div class="project-name">Aegis Agent</div>
-            <div class="project-outcome">
-              Private, local-first Android AI agent
-            </div>
-            <div class="project-desc">
-              An on-device Android AI agent that runs entirely locally — no
-              cloud calls, no data leaving the device. Built in Kotlin for
-              privacy-first AI assistance on mobile.
-            </div>
-            <div class="project-body">
-              <div class="project-body-inner">
-                <div class="project-detail-heading">Why local-first</div>
-                <div class="project-detail-text">
-                  Most mobile AI assistants pipe everything to a remote server.
-                  Aegis keeps inference on-device — faster for latency-sensitive
-                  tasks, private by design, works offline.
-                </div>
-                <div class="project-detail-heading">Architecture</div>
-                <div class="project-detail-text">
-                  Kotlin Android app with on-device model inference. Agent loop
-                  handles task decomposition and tool invocation locally.
-                  Designed around a minimal-permission model — only asks for
-                  what it needs.
-                </div>
-                <div class="project-detail-heading">Key challenge</div>
-                <div class="project-detail-text">
-                  Balancing model capability against memory and battery
-                  constraints on real devices. The agent architecture needed to
-                  be interruptible and resumable without losing state.
-                </div>
-              </div>
-            </div>
-            <div class="tag-row" style="margin-bottom: 16px">
-              <span class="tag">Kotlin</span><span class="tag">Android</span
-              ><span class="tag">AI</span><span class="tag">On-device</span>
-            </div>
-            <div
-              style="
-                display: flex;
-                gap: 10px;
-                align-items: center;
-                flex-wrap: wrap;
-              "
-            >
-              <button class="project-expand" onclick="toggleProject(this)">
-                Full case study
-                <svg
-                  width="12"
-                  height="12"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                >
-                  <line x1="12" y1="5" x2="12" y2="19" />
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                </svg>
-              </button>
-              <a
-                href="https://github.com/Abtg08/aegis-agent"
-                target="_blank"
-                rel="noopener"
-                style="
-                  font-size: 12px;
-                  color: var(--accent);
-                  display: flex;
-                  align-items: center;
-                  gap: 4px;
-                  opacity: 0.85;
-                  transition: opacity 0.15s;
-                "
-                onmouseover="this.style.opacity = 1"
-                onmouseout="this.style.opacity = 0.85"
-              >
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
-                  />
-                </svg>
-                View on GitHub
-              </a>
-            </div>
-          </div>
-
-          <div class="project-card">
-            <div class="project-year">2024</div>
-            <div class="project-name">Event-Driven Data Pipeline</div>
-            <div class="project-outcome">
-              Reference architecture for event-driven ETL
-            </div>
-            <div class="project-desc">
-              A reference implementation of event-driven data pipelining
-              patterns — designed to be cloned and extended for real streaming
-              ETL use cases with proper fault isolation.
-            </div>
-            <div class="project-body">
-              <div class="project-body-inner">
-                <div class="project-detail-heading">Purpose</div>
-                <div class="project-detail-text">
-                  Patterns for event-driven pipelines are scattered across docs
-                  and blog posts. This is a working reference you can clone and
-                  study — complete with DLQ handling, idempotency, and
-                  backpressure examples.
-                </div>
-                <div class="project-detail-heading">Architecture</div>
-                <div class="project-detail-text">
-                  Producer → Message broker → Consumer workers → Storage sink.
-                  Each stage is independently deployable. DLQ on every consumer.
-                  Exactly-once semantics via idempotency keys.
-                </div>
-                <div class="project-detail-heading">Patterns covered</div>
-                <div class="project-detail-text">
-                  Fan-out, competing consumers, saga for distributed
-                  transactions, outbox pattern for reliable event publishing
-                  from a transactional database.
-                </div>
-              </div>
-            </div>
-            <div class="tag-row" style="margin-bottom: 16px">
-              <span class="tag">Python</span><span class="tag">Pub/Sub</span
-              ><span class="tag">Event-driven</span><span class="tag">ETL</span
-              ><span class="tag">Docker</span>
-            </div>
-            <div
-              style="
-                display: flex;
-                gap: 10px;
-                align-items: center;
-                flex-wrap: wrap;
-              "
-            >
-              <button class="project-expand" onclick="toggleProject(this)">
-                Full case study
-                <svg
-                  width="12"
-                  height="12"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                >
-                  <line x1="12" y1="5" x2="12" y2="19" />
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                </svg>
-              </button>
-              <a
-                href="https://github.com/Abtg08/event-driven-data-pipelining"
-                target="_blank"
-                rel="noopener"
-                style="
-                  font-size: 12px;
-                  color: var(--accent);
-                  display: flex;
-                  align-items: center;
-                  gap: 4px;
-                  opacity: 0.85;
-                  transition: opacity 0.15s;
-                "
-                onmouseover="this.style.opacity = 1"
-                onmouseout="this.style.opacity = 0.85"
-              >
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
-                  />
-                </svg>
-                View on GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="divider container"></div>
-
-    <!-- SKILLS -->
-    <section id="skills" class="fade-in">
-      <div class="container">
-        <div class="section-eyebrow">Skills</div>
-        <h2 class="section-heading">What I reach for, and why.</h2>
-
-        <div class="skills-layout">
-          <div class="skill-group">
-            <div class="skill-cat">Cloud &amp; Infra</div>
-            <div class="skill-list">
-              GCP, BigQuery, Cloud Run, Pub/Sub, Cloud Storage, Terraform,
-              Docker, GitHub Actions
-            </div>
-          </div>
-          <div class="skill-group">
-            <div class="skill-cat">Languages</div>
-            <div class="skill-list">
-              Python, TypeScript, SQL, Go (learning), Bash
-            </div>
-          </div>
-          <div class="skill-group">
-            <div class="skill-cat">Backend</div>
-            <div class="skill-list">
-              FastAPI, Node.js, REST, gRPC (basics), async Python, background
-              tasks
-            </div>
-          </div>
-          <div class="skill-group">
-            <div class="skill-cat">AI / ML</div>
-            <div class="skill-list">
-              LLMs, RAG, OpenAI API, Embeddings, pgvector, Evals, agentic
-              workflows
-            </div>
-          </div>
-          <div class="skill-group">
-            <div class="skill-cat">Databases</div>
-            <div class="skill-list">
-              PostgreSQL, BigQuery, Redis, pgvector, MySQL
-            </div>
-          </div>
-          <div class="skill-group">
-            <div class="skill-cat">Data Engineering</div>
-            <div class="skill-list">
-              dbt, streaming ETL, data modeling, Airflow (basics), Pub/Sub
-              pipelines
-            </div>
-          </div>
-        </div>
-
-        <div class="certs-section">
-          <div class="certs-heading">Certifications</div>
-          <div class="cert-list">
-            <div class="cert-item">
-              <div>
-                <div class="cert-name">
-                  Google Cloud Associate Data Engineer
-                </div>
-                <div class="cert-issuer">Google Cloud</div>
-              </div>
-              <div class="cert-year">2025</div>
-            </div>
-            <div class="cert-item">
-              <div>
-                <div class="cert-name">dbt Fundamentals</div>
-                <div class="cert-issuer">dbt Labs</div>
-              </div>
-              <div class="cert-year">2024</div>
-            </div>
-            <div class="cert-item">
-              <div>
-                <div class="cert-name">Deep Learning Specialization</div>
-                <div class="cert-issuer">DeepLearning.AI (Coursera)</div>
-              </div>
-              <div class="cert-year">2024</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="divider container"></div>
-
-    <!-- TIMELINE -->
-    <section id="timeline" class="fade-in">
-      <div class="container">
-        <div class="section-eyebrow">Timeline</div>
-        <h2 class="section-heading">Career progression.</h2>
-
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">2024</div>
-            <div class="timeline-title">
-              First production role — Data Engineer
-            </div>
-            <div class="timeline-body">
-              Joined a product startup. GCP data platform from day one — dbt
-              models, Terraform infra, BigQuery warehouse ownership.
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">2025 Q1</div>
-            <div class="timeline-title">Owned the streaming migration</div>
-            <div class="timeline-body">
-              Designed and shipped batch → streaming pipeline. Freshness: 24h →
-              &lt;5 min. 50M+ events/day in production.
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">2025 Q2</div>
-            <div class="timeline-title">Cost &amp; reliability ownership</div>
-            <div class="timeline-body">
-              Cut warehouse cost 40% through partitioning and clustering. Drove
-              99.9% pipeline uptime with DLQs, health checks, and runbooks.
-            </div>
-          </div>
-          <div class="timeline-item current">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">2025 Q3</div>
-            <div class="timeline-title">First AI service in production</div>
-            <div class="timeline-body">
-              RAG docs assistant shipped — FastAPI + pgvector + OpenAI, with an
-              eval harness in CI. Going deep on system design and Go.
-            </div>
-          </div>
-          <div class="timeline-item future">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">Next</div>
-            <div class="timeline-title">
-              Backend / AI engineering at a product company
-            </div>
-            <div class="timeline-body">
-              Looking for a team building AI-native systems where data
-              engineering discipline meets backend depth. Open to roles now.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="contact-section fade-in">
-      <div class="container">
-        <h2 class="contact-lead">Let's work together.</h2>
-        <p class="contact-sub">
-          Open to backend, full-stack, and AI engineering roles. Prefer product
-          companies building systems that matter.
-        </p>
-        <div class="contact-links">
-          <a href="mailto:akshatbansal161@gmail.com" class="contact-email"
-            >akshatbansal161@gmail.com</a
-          >
-          <a
-            href="https://github.com/Abtg08"
-            target="_blank"
-            rel="noopener"
-            class="btn-outline"
-            style="font-size: 12px; padding: 8px 16px"
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
-              />
-            </svg>
-            GitHub
-          </a>
-          <a
-            href="https://www.linkedin.com/in/akshat-bansal-b7585a242/"
-            target="_blank"
-            rel="noopener"
-            class="btn-outline"
-            style="font-size: 12px; padding: 8px 16px"
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-              />
-            </svg>
-            LinkedIn
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-      <div class="container">
-        <div class="footer-bottom">
-          <div class="footer-copy">© 2025 Akshat Bansal. Built with care.</div>
-          <div class="footer-links">
-            <a href="mailto:akshatbansal161@gmail.com">Email</a>
-            <a href="https://github.com/Abtg08" target="_blank" rel="noopener"
-              >GitHub</a
-            >
+                <path
+                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
+                />
+              </svg>
+              GitHub
+            </a>
             <a
               href="https://www.linkedin.com/in/akshat-bansal-b7585a242/"
               target="_blank"
               rel="noopener"
-              >LinkedIn</a
+              class="btn-outline"
+              style="font-size: 12px; padding: 8px 16px"
             >
-            <a href="https://x.com/aeebeey" target="_blank" rel="noopener"
-              >X / Twitter</a
-            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                />
+              </svg>
+              LinkedIn
+            </a>
+          </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+          <div class="footer-bottom">
+            <div class="footer-copy">
+              © 2026 Akshat Bansal. Built with care.
+            </div>
+            <div class="footer-links">
+              <a href="mailto:akshatbansal161@gmail.com">Email</a>
+              <a href="https://github.com/Abtg08" target="_blank" rel="noopener"
+                >GitHub</a
+              >
+              <a
+                href="https://www.linkedin.com/in/akshat-bansal-b7585a242/"
+                target="_blank"
+                rel="noopener"
+                >LinkedIn</a
+              >
+              <a href="https://x.com/aeebeey" target="_blank" rel="noopener"
+                >X</a
+              >
+            </div>
+          </div>
+        </footer>
+      </main>
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-card">
+          <div class="sidebar-status">
+            <span class="sidebar-status-dot"></span>
+            Open to roles
+          </div>
+          <div class="sidebar-status-label">
+            Available now · Remote preferred
           </div>
         </div>
-      </div>
-    </footer>
+
+        <div class="sidebar-card">
+          <div class="sidebar-label">Navigate</div>
+          <nav class="sidebar-nav">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+
+        <div class="sidebar-card">
+          <div class="sidebar-label">Contact</div>
+          <div class="sidebar-contact">
+            <a href="mailto:akshatbansal161@gmail.com">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
+              akshatbansal161@gmail.com
+            </a>
+            <a href="https://github.com/Abtg08" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
+                />
+              </svg>
+              github.com/Abtg08
+            </a>
+            <a
+              href="https://www.linkedin.com/in/akshat-bansal-b7585a242/"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                />
+              </svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
 
     <script>
-      // nav active state
-      const sections = document.querySelectorAll("section[id], div[id]");
+      // ── nav + sidebar active state on scroll ──
+      const sections = document.querySelectorAll("section[id]");
       const navLinks = document.querySelectorAll(".nav-links a");
-      const observer = new IntersectionObserver(
+      const sideLinks = document.querySelectorAll(".sidebar-nav a");
+      const allLinks = [...navLinks, ...sideLinks];
+
+      const secObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((e) => {
             if (e.isIntersecting) {
-              navLinks.forEach((l) => l.classList.remove("active"));
-              const active = document.querySelector(
-                `.nav-links a[href="#${e.target.id}"]`,
-              );
-              if (active) active.classList.add("active");
+              allLinks.forEach((l) => l.classList.remove("active"));
+              document
+                .querySelectorAll(`a[href="#${e.target.id}"]`)
+                .forEach((l) => l.classList.add("active"));
             }
           });
         },
-        { threshold: 0.4 },
+        { threshold: 0.3 },
       );
-      sections.forEach((s) => observer.observe(s));
+      sections.forEach((s) => secObserver.observe(s));
 
-      // fade in on scroll
+      // ── fade-in sections + trigger tile animations ──
       const fadeEls = document.querySelectorAll(".fade-in");
       const fadeObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((e) => {
             if (e.isIntersecting) {
               e.target.classList.add("visible");
+              // trigger tile animations when parent section becomes visible
+              e.target
+                .querySelectorAll("#projectsGrid, #skillsGrid")
+                .forEach((grid) => {
+                  grid.classList.add("animate");
+                });
               fadeObserver.unobserve(e.target);
             }
           });
         },
-        { threshold: 0.12 },
+        { threshold: 0.08 },
       );
       fadeEls.forEach((el) => fadeObserver.observe(el));
 
-      // exp toggle
+      // ── exp toggle ──
       function toggleExp(header) {
         const body = header.nextElementSibling;
         const btn = header.querySelector(".exp-toggle");
@@ -1943,34 +2112,14 @@
         btn.classList.toggle("open", !isOpen);
       }
 
-      // project toggle
+      // ── project toggle ──
       function toggleProject(btn) {
         const card = btn.closest(".project-card");
         const body = card.querySelector(".project-body");
         const isOpen = body.classList.contains("open");
         body.classList.toggle("open", !isOpen);
         btn.classList.toggle("open", !isOpen);
-        btn.querySelector("span") &&
-          (btn.querySelector("span").textContent = isOpen
-            ? "Full case study"
-            : "Close");
       }
     </script>
   </body>
 </html>
-
--- Old Script --
-
-<!-- <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Akshat Bansal</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
-</html> -->
